@@ -1,0 +1,1495 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>去登味 · 直男沟通进化器</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #1a1410;
+  --ink-light: #4a3f35;
+  --ink-muted: #8a7968;
+  --paper: #faf7f2;
+  --paper-warm: #f5f0e8;
+  --paper-dark: #ede8df;
+  --accent: #c8502a;
+  --accent-light: #e8896a;
+  --accent-pale: #fdf0ea;
+  --gold: #b8962e;
+  --gold-pale: #fdf8ee;
+  --teal: #2a7a6a;
+  --teal-pale: #eaf5f2;
+  --border: rgba(26,20,16,0.12);
+  --border-strong: rgba(26,20,16,0.25);
+  --red-soft: #fdf0f0;
+  --red-text: #8a2020;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'Noto Sans SC', sans-serif;
+  font-weight: 300;
+  line-height: 1.8;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ─── NAV ─── */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  background: rgba(26,20,16,0.96);
+  backdrop-filter: blur(12px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+  height: 56px;
+  border-bottom: 1px solid rgba(250,247,242,0.08);
+}
+
+.nav-brand {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--paper);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nav-brand span { color: var(--accent); }
+
+.nav-tabs {
+  display: flex;
+  gap: 4px;
+}
+
+.nav-tab {
+  padding: 6px 18px;
+  font-size: 13px;
+  color: rgba(250,247,242,0.45);
+  cursor: pointer;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  transition: all 0.2s;
+  font-weight: 400;
+  letter-spacing: 0.03em;
+  background: none;
+}
+
+.nav-tab:hover { color: rgba(250,247,242,0.75); }
+.nav-tab.active {
+  color: var(--paper);
+  border-color: rgba(200,80,42,0.5);
+  background: rgba(200,80,42,0.12);
+}
+
+/* ─── PAGES ─── */
+.page { display: none; padding-top: 56px; }
+.page.active { display: block; }
+
+/* ══════════════════════════════
+   PAGE 1: METHODOLOGY
+══════════════════════════════ */
+
+/* COVER */
+.cover {
+  min-height: calc(100vh - 56px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 40px;
+  position: relative;
+  background: var(--ink);
+  overflow: hidden;
+}
+
+.cover::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 40% at 20% 80%, rgba(200,80,42,0.15) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 60% at 80% 20%, rgba(184,150,46,0.12) 0%, transparent 70%);
+}
+
+.cover-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(250,247,242,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(250,247,242,0.04) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+.cover-content { position: relative; z-index: 1; text-align: center; max-width: 700px; }
+
+.cover-tag {
+  display: inline-block;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  color: var(--accent-light);
+  border: 1px solid rgba(200,80,42,0.4);
+  padding: 5px 16px;
+  margin-bottom: 48px;
+  font-weight: 400;
+}
+
+.cover-zh {
+  font-family: 'Noto Serif SC', serif;
+  font-size: clamp(56px, 10vw, 96px);
+  font-weight: 700;
+  color: var(--paper);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 12px;
+}
+
+.cover-zh em { color: var(--accent); font-style: normal; }
+
+.cover-sub {
+  font-size: 15px;
+  color: rgba(250,247,242,0.5);
+  font-weight: 300;
+  letter-spacing: 0.08em;
+  margin-bottom: 64px;
+}
+
+.cover-divider {
+  width: 1px;
+  height: 60px;
+  background: linear-gradient(to bottom, transparent, rgba(200,80,42,0.6), transparent);
+  margin: 0 auto 48px;
+}
+
+.cover-intro {
+  font-size: 16px;
+  color: rgba(250,247,242,0.65);
+  line-height: 1.9;
+  max-width: 520px;
+  margin: 0 auto 48px;
+}
+
+.cover-intro em { color: var(--paper); font-style: normal; font-weight: 400; }
+
+.try-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 32px;
+  background: var(--accent);
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  border: none;
+  border-radius: 2px;
+  transition: all 0.2s;
+}
+
+.try-btn:hover { background: #a83e1f; transform: translateY(-1px); }
+
+/* MAIN CONTENT */
+.m-wrap { max-width: 900px; margin: 0 auto; padding: 0 40px; }
+
+.chapter { padding: 80px 0 0; }
+
+.chapter-num {
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  color: var(--accent);
+  font-weight: 500;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.chapter-num::after {
+  content: '';
+  flex: 1;
+  max-width: 48px;
+  height: 1px;
+  background: var(--accent);
+  opacity: 0.4;
+}
+
+.chapter-title {
+  font-family: 'Noto Serif SC', serif;
+  font-size: clamp(26px, 4vw, 38px);
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.2;
+  margin-bottom: 16px;
+}
+
+.chapter-desc {
+  font-size: 15px;
+  color: var(--ink-muted);
+  max-width: 560px;
+  line-height: 1.8;
+  margin-bottom: 48px;
+  border-left: 2px solid var(--accent-light);
+  padding-left: 16px;
+}
+
+/* ROOT GRID */
+.root-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  margin-bottom: 48px;
+}
+
+.root-item {
+  background: var(--paper);
+  padding: 32px 28px;
+}
+
+.root-num {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 48px;
+  font-weight: 700;
+  color: var(--paper-dark);
+  line-height: 1;
+  margin-bottom: 16px;
+}
+
+.root-tag {
+  display: inline-block;
+  font-size: 10px;
+  padding: 3px 8px;
+  background: var(--accent-pale);
+  color: var(--accent);
+  letter-spacing: 0.05em;
+  margin-bottom: 12px;
+  font-weight: 500;
+}
+
+.root-title { font-size: 15px; font-weight: 500; color: var(--ink); margin-bottom: 10px; }
+.root-desc { font-size: 13px; color: var(--ink-muted); line-height: 1.7; }
+
+/* QUOTE */
+.quote-block {
+  border-left: 3px solid var(--accent);
+  padding: 20px 28px;
+  background: var(--paper-warm);
+  margin: 32px 0;
+}
+
+.quote-text {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.7;
+  margin-bottom: 8px;
+}
+
+.quote-source { font-size: 12px; color: var(--ink-muted); letter-spacing: 0.05em; }
+
+/* FRAMEWORK */
+.fw-wrap {
+  background: var(--ink);
+  padding: 64px 48px;
+  margin: 0 -40px 48px;
+  position: relative;
+  overflow: hidden;
+}
+
+.fw-wrap::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(200,80,42,0.08) 0%, transparent 70%);
+}
+
+.fw-heading {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--paper);
+  margin-bottom: 6px;
+  position: relative;
+}
+
+.fw-sub {
+  font-size: 13px;
+  color: rgba(250,247,242,0.4);
+  margin-bottom: 40px;
+  letter-spacing: 0.05em;
+  position: relative;
+}
+
+.fw-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: rgba(250,247,242,0.08);
+  position: relative;
+}
+
+.fw-item {
+  background: rgba(26,20,16,0.8);
+  padding: 28px 24px;
+  border-top: 2px solid transparent;
+}
+
+.fw-item:nth-child(1) { border-top-color: var(--accent); }
+.fw-item:nth-child(2) { border-top-color: var(--gold); }
+.fw-item:nth-child(3) { border-top-color: var(--teal); }
+.fw-item:nth-child(4) { border-top-color: #7a6ac8; }
+
+.fw-step { font-size: 10px; letter-spacing: 0.2em; color: rgba(250,247,242,0.35); margin-bottom: 10px; font-weight: 500; }
+.fw-name { font-family: 'Noto Serif SC', serif; font-size: 20px; font-weight: 700; color: var(--paper); margin-bottom: 10px; line-height: 1.2; }
+.fw-icon { font-size: 26px; margin-bottom: 14px; display: block; }
+.fw-desc { font-size: 12px; color: rgba(250,247,242,0.5); line-height: 1.7; }
+
+/* BA */
+.ba-pair {
+  display: grid;
+  grid-template-columns: 1fr 40px 1fr;
+  gap: 0;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.ba-box {
+  padding: 18px 22px;
+  border-radius: 2px;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.ba-before { background: #fdf0f0; border: 1px solid rgba(200,80,42,0.2); }
+.ba-before .ba-label { color: var(--accent); font-size: 11px; font-weight: 500; letter-spacing: 0.1em; margin-bottom: 6px; }
+.ba-after { background: var(--teal-pale); border: 1px solid rgba(42,122,106,0.2); }
+.ba-after .ba-label { color: var(--teal); font-size: 11px; font-weight: 500; letter-spacing: 0.1em; margin-bottom: 6px; }
+.ba-arrow { text-align: center; font-size: 20px; color: var(--ink-muted); opacity: 0.4; }
+
+/* SKILLS */
+.skills-list { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); margin-bottom: 48px; }
+
+.skill-row {
+  background: var(--paper);
+  display: grid;
+  grid-template-columns: 48px 1fr auto;
+  align-items: stretch;
+}
+
+.skill-num {
+  background: var(--paper-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Noto Serif SC', serif;
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--ink-muted);
+}
+
+.skill-body { padding: 18px 24px; }
+.skill-name { font-size: 15px; font-weight: 500; color: var(--ink); margin-bottom: 4px; }
+.skill-detail { font-size: 13px; color: var(--ink-muted); line-height: 1.6; }
+.skill-tag { padding: 18px 20px; display: flex; align-items: center; }
+
+.tag-pill {
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  padding: 4px 10px;
+  font-weight: 500;
+  border-radius: 2px;
+}
+
+.tag-daily { background: var(--teal-pale); color: var(--teal); }
+.tag-key { background: var(--gold-pale); color: var(--gold); }
+.tag-mindset { background: var(--accent-pale); color: var(--accent); }
+
+/* EMOTION GRID */
+.emotion-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 48px;
+}
+
+.emotion-card {
+  border: 1px solid var(--border);
+  padding: 24px;
+  position: relative;
+}
+
+.emotion-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 3px;
+  height: 100%;
+}
+
+.emotion-card.t1::before { background: var(--accent); }
+.emotion-card.t2::before { background: var(--gold); }
+.emotion-card.t3::before { background: var(--teal); }
+.emotion-card.t4::before { background: #7a6ac8; }
+
+.ec-label { font-size: 11px; letter-spacing: 0.12em; color: var(--ink-muted); margin-bottom: 8px; font-weight: 500; }
+.ec-signal { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+.ec-response { font-size: 13px; color: var(--ink-muted); line-height: 1.6; }
+.ec-quote { font-size: 13px; font-weight: 500; color: var(--teal); margin-top: 8px; font-style: italic; }
+
+/* MINDSET */
+.mindset-wrap {
+  background: var(--ink);
+  padding: 64px 48px;
+  margin: 0 -40px 0;
+  position: relative;
+}
+
+.mindset-wrap::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(200,80,42,0.07) 0%, transparent 70%);
+}
+
+.mindset-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 40px;
+  position: relative;
+}
+
+.mc {
+  border: 1px solid rgba(250,247,242,0.1);
+  padding: 28px;
+}
+
+.mc-num {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 40px;
+  font-weight: 700;
+  color: rgba(250,247,242,0.07);
+  line-height: 1;
+  margin-bottom: 12px;
+}
+
+.mc-title { font-size: 16px; font-weight: 500; color: var(--paper); margin-bottom: 10px; }
+.mc-body { font-size: 13px; color: rgba(250,247,242,0.5); line-height: 1.8; }
+.mc-highlight {
+  font-size: 14px;
+  font-style: italic;
+  color: var(--accent-light);
+  margin-top: 12px;
+  border-top: 1px solid rgba(250,247,242,0.08);
+  padding-top: 12px;
+}
+
+/* FOOTER */
+.footer {
+  background: var(--ink);
+  padding: 32px 40px;
+  text-align: center;
+  color: rgba(250,247,242,0.25);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+}
+
+.section-divider { height: 1px; background: var(--border); margin: 64px 0; }
+
+/* ══════════════════════════════
+   PAGE 2: ANALYZER
+══════════════════════════════ */
+
+.analyzer-layout {
+  display: grid;
+  grid-template-columns: 420px 1fr;
+  height: calc(100vh - 56px);
+}
+
+/* LEFT: INPUT */
+.input-panel {
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  background: var(--paper);
+}
+
+.panel-header {
+  padding: 28px 28px 20px;
+  border-bottom: 1px solid var(--border);
+}
+
+.panel-title {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+
+.panel-sub { font-size: 12px; color: var(--ink-muted); line-height: 1.6; }
+
+.context-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 28px;
+  gap: 12px;
+  overflow-y: auto;
+}
+
+.context-hint {
+  font-size: 12px;
+  color: var(--ink-muted);
+  padding: 12px 0 4px;
+  letter-spacing: 0.02em;
+}
+
+/* Message builder */
+.msg-row {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+}
+
+.msg-who {
+  flex-shrink: 0;
+  padding: 6px 10px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  border: 1px solid var(--border-strong);
+  border-radius: 2px;
+  background: var(--paper);
+  color: var(--ink-muted);
+  white-space: nowrap;
+  transition: all 0.15s;
+  user-select: none;
+}
+
+.msg-who.me {
+  background: var(--accent-pale);
+  color: var(--accent);
+  border-color: rgba(200,80,42,0.3);
+}
+
+.msg-who.her {
+  background: var(--teal-pale);
+  color: var(--teal);
+  border-color: rgba(42,122,106,0.3);
+}
+
+.msg-input {
+  flex: 1;
+  padding: 8px 12px;
+  font-size: 13px;
+  font-family: 'Noto Sans SC', sans-serif;
+  color: var(--ink);
+  background: var(--paper-warm);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  resize: none;
+  min-height: 38px;
+  max-height: 80px;
+  overflow-y: auto;
+  line-height: 1.5;
+  transition: border-color 0.15s;
+}
+
+.msg-input:focus { outline: none; border-color: var(--border-strong); }
+.msg-input::placeholder { color: var(--ink-muted); opacity: 0.6; }
+
+.msg-del {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--ink-muted);
+  opacity: 0.4;
+  font-size: 16px;
+  transition: opacity 0.15s;
+  margin-top: 5px;
+}
+
+.msg-del:hover { opacity: 0.9; }
+
+.add-msg-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  font-size: 12px;
+  color: var(--ink-muted);
+  cursor: pointer;
+  border: 1px dashed var(--border-strong);
+  border-radius: 2px;
+  background: none;
+  transition: all 0.15s;
+  font-family: 'Noto Sans SC', sans-serif;
+}
+
+.add-msg-btn:hover { color: var(--accent); border-color: rgba(200,80,42,0.4); background: var(--accent-pale); }
+
+.panel-footer {
+  padding: 16px 28px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.analyze-btn {
+  flex: 1;
+  padding: 12px 24px;
+  background: var(--accent);
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  border: none;
+  border-radius: 2px;
+  font-family: 'Noto Sans SC', sans-serif;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.analyze-btn:hover:not(:disabled) { background: #a83e1f; }
+.analyze-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.clear-btn {
+  padding: 12px 16px;
+  background: none;
+  color: var(--ink-muted);
+  font-size: 13px;
+  cursor: pointer;
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  font-family: 'Noto Sans SC', sans-serif;
+  transition: all 0.15s;
+}
+
+.clear-btn:hover { border-color: var(--border-strong); color: var(--ink); }
+
+/* RIGHT: RESULT */
+.result-panel {
+  display: flex;
+  flex-direction: column;
+  background: var(--paper-warm);
+  overflow: hidden;
+}
+
+.result-header {
+  padding: 28px 32px 20px;
+  border-bottom: 1px solid var(--border);
+  background: var(--paper);
+}
+
+.result-title {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+
+.result-sub { font-size: 12px; color: var(--ink-muted); }
+
+.result-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 28px 32px;
+}
+
+/* EMPTY STATE */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  text-align: center;
+  color: var(--ink-muted);
+  gap: 16px;
+  padding: 40px;
+}
+
+.empty-icon { font-size: 48px; opacity: 0.4; }
+.empty-title { font-size: 16px; font-weight: 500; color: var(--ink-light); }
+.empty-desc { font-size: 13px; line-height: 1.7; max-width: 280px; }
+
+/* LOADING */
+.loading-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  gap: 20px;
+}
+
+.loading-dots {
+  display: flex;
+  gap: 6px;
+}
+
+.loading-dots span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  animation: dotPulse 1.4s ease-in-out infinite;
+}
+
+.loading-dots span:nth-child(2) { animation-delay: 0.2s; }
+.loading-dots span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes dotPulse {
+  0%, 80%, 100% { transform: scale(0.6); opacity: 0.4; }
+  40% { transform: scale(1); opacity: 1; }
+}
+
+.loading-text { font-size: 14px; color: var(--ink-muted); }
+
+/* RESULT CONTENT */
+.score-banner {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.score-card {
+  background: var(--paper);
+  border: 1px solid var(--border);
+  padding: 16px 18px;
+  border-radius: 2px;
+}
+
+.sc-label { font-size: 10px; letter-spacing: 0.12em; color: var(--ink-muted); margin-bottom: 6px; font-weight: 500; }
+.sc-value { font-family: 'Noto Serif SC', serif; font-size: 28px; font-weight: 700; line-height: 1; }
+.sc-value.level-high { color: var(--accent); }
+.sc-value.level-mid { color: var(--gold); }
+.sc-value.level-low { color: var(--teal); }
+.sc-desc { font-size: 11px; color: var(--ink-muted); margin-top: 4px; }
+
+.result-section { margin-bottom: 24px; }
+.rs-title {
+  font-size: 12px;
+  letter-spacing: 0.15em;
+  color: var(--ink-muted);
+  font-weight: 500;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.rs-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+/* PROBLEM ITEMS */
+.problem-item {
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  padding: 16px 18px;
+  margin-bottom: 10px;
+  border-radius: 0 2px 2px 0;
+}
+
+.pi-quote {
+  font-size: 13px;
+  font-style: italic;
+  color: var(--red-text);
+  background: var(--red-soft);
+  border: 1px solid rgba(200,80,42,0.15);
+  padding: 8px 12px;
+  margin-bottom: 10px;
+  border-radius: 2px;
+}
+
+.pi-type {
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.pi-explain { font-size: 13px; color: var(--ink-muted); line-height: 1.7; margin-bottom: 10px; }
+
+.pi-better-label { font-size: 11px; color: var(--teal); font-weight: 500; margin-bottom: 4px; letter-spacing: 0.08em; }
+.pi-better {
+  font-size: 13px;
+  color: var(--ink);
+  background: var(--teal-pale);
+  border: 1px solid rgba(42,122,106,0.2);
+  padding: 8px 12px;
+  border-radius: 2px;
+  line-height: 1.6;
+}
+
+/* GOOD ITEMS */
+.good-item {
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--teal);
+  padding: 14px 18px;
+  margin-bottom: 8px;
+  border-radius: 0 2px 2px 0;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.good-icon { color: var(--teal); font-size: 16px; flex-shrink: 0; margin-top: 2px; }
+.good-text { font-size: 13px; color: var(--ink-muted); line-height: 1.6; }
+
+/* OVERALL ADVICE */
+.advice-box {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 24px 24px;
+  border-radius: 2px;
+}
+
+.advice-box p { font-size: 14px; line-height: 1.8; color: rgba(250,247,242,0.75); }
+.advice-box strong { color: var(--accent-light); font-weight: 500; }
+
+/* EXAMPLE PRESETS */
+.preset-area {
+  padding: 12px 0 0;
+}
+
+.preset-label { font-size: 11px; color: var(--ink-muted); letter-spacing: 0.08em; margin-bottom: 8px; }
+.preset-chips { display: flex; gap: 6px; flex-wrap: wrap; }
+.preset-chip {
+  font-size: 11px;
+  padding: 5px 10px;
+  border: 1px solid var(--border-strong);
+  border-radius: 2px;
+  cursor: pointer;
+  color: var(--ink-muted);
+  background: var(--paper);
+  transition: all 0.15s;
+  font-family: 'Noto Sans SC', sans-serif;
+}
+
+.preset-chip:hover { border-color: rgba(200,80,42,0.5); color: var(--accent); background: var(--accent-pale); }
+
+/* SPINNER */
+.spin {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(255,255,255,0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .nav { padding: 0 20px; }
+  .analyzer-layout { grid-template-columns: 1fr; grid-template-rows: auto 1fr; height: auto; }
+  .input-panel { max-height: 50vh; }
+  .result-panel { min-height: 60vh; }
+  .m-wrap { padding: 0 20px; }
+  .root-grid { grid-template-columns: 1fr; }
+  .fw-grid { grid-template-columns: 1fr 1fr; }
+  .emotion-grid { grid-template-columns: 1fr; }
+  .mindset-grid { grid-template-columns: 1fr; }
+  .ba-pair { grid-template-columns: 1fr; }
+  .ba-arrow { display: none; }
+  .fw-wrap, .mindset-wrap { margin: 0 -20px; padding: 40px 20px; }
+  .score-banner { grid-template-columns: 1fr 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-brand"><em>去</em>登味</div>
+  <div class="nav-tabs">
+    <button class="nav-tab active" onclick="switchPage('methodology')">📖 进步方法论</button>
+    <button class="nav-tab" onclick="switchPage('analyzer')">🔍 登味诊断器</button>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════════
+     PAGE 1: METHODOLOGY
+══════════════════════════════════════ -->
+<div id="page-methodology" class="page active">
+
+  <!-- COVER -->
+  <div class="cover">
+    <div class="cover-grid"></div>
+    <div class="cover-content">
+      <div class="cover-tag">直男沟通进化手册 · 完整方法论</div>
+      <div class="cover-zh"><em>去</em>登味</div>
+      <div class="cover-sub">The Anti-Obliviousness Framework</div>
+      <div class="cover-divider"></div>
+      <div class="cover-intro">
+        登味不是你的错，是<em>没人教过你</em>。<br>
+        这套方法论帮你从根源理解问题，<br>建立系统、练习技巧、养成习惯。
+      </div>
+      <button class="try-btn" onclick="switchPage('analyzer')">
+        🔍 试试登味诊断器
+      </button>
+    </div>
+  </div>
+
+  <div class="m-wrap">
+
+    <!-- CHAPTER 1 -->
+    <div class="chapter">
+      <div class="chapter-num">CHAPTER 01</div>
+      <div class="chapter-title">你为什么有登味？</div>
+      <div class="chapter-desc">登味的本质不是"不懂事"，而是长期用"任务完成"思维处理人际对话，忽略了沟通的情感维度。</div>
+    </div>
+
+    <div class="root-grid">
+      <div class="root-item">
+        <div class="root-tag">根因 01</div>
+        <div class="root-num">01</div>
+        <div class="root-title">信息传递模式</div>
+        <div class="root-desc">把所有对话当成"数据交换"，说完事实就算完成。忽略了对方需要被看见、被理解的底层需求。</div>
+      </div>
+      <div class="root-item">
+        <div class="root-tag">根因 02</div>
+        <div class="root-num">02</div>
+        <div class="root-title">急于解决问题</div>
+        <div class="root-desc">对方还没说完，你已经在列解决方案。表面是效率，实际是在说"我不想听你倾诉，只想结束这个话题"。</div>
+      </div>
+      <div class="root-item">
+        <div class="root-tag">根因 03</div>
+        <div class="root-num">03</div>
+        <div class="root-title">用逻辑反驳情绪</div>
+        <div class="root-desc">情绪没有对错之分，但你习惯用逻辑证明对方"不应该"有这种感受，这会让人觉得被否定。</div>
+      </div>
+    </div>
+
+    <div class="quote-block">
+      <div class="quote-text">沟通的本质不是"传递信息"，而是"让对方感觉被接住"。</div>
+      <div class="quote-source">去登味方法论核心原则</div>
+    </div>
+
+    <!-- CHAPTER 2 -->
+    <div class="chapter">
+      <div class="chapter-num">CHAPTER 02</div>
+      <div class="chapter-title">HEAR 四步框架</div>
+      <div class="chapter-desc">一套可以在任何对话场景复用的结构，把"凭感觉"变成"有系统"。</div>
+    </div>
+
+  </div>
+
+  <div class="fw-wrap">
+    <div style="max-width:900px;margin:0 auto;">
+      <div class="fw-heading">H · E · A · R</div>
+      <div class="fw-sub">Hold · Empathize · Ask · Respond</div>
+      <div class="fw-grid">
+        <div class="fw-item">
+          <span class="fw-icon">✋</span>
+          <div class="fw-step">STEP 01</div>
+          <div class="fw-name">H<br>Hold</div>
+          <div class="fw-desc">先暂停你的"解决模式"。给自己3秒，不急着说话，先观察对方的状态与情绪。</div>
+        </div>
+        <div class="fw-item">
+          <span class="fw-icon">🫂</span>
+          <div class="fw-step">STEP 02</div>
+          <div class="fw-name">E<br>Empathize</div>
+          <div class="fw-desc">先用语言承认对方的感受。不评价对错，只是反射："听起来真的很烦"、"这挺累的"。</div>
+        </div>
+        <div class="fw-item">
+          <span class="fw-icon">🔍</span>
+          <div class="fw-step">STEP 03</div>
+          <div class="fw-name">A<br>Ask</div>
+          <div class="fw-desc">用好奇心提问，而不是给结论。"你当时是什么感受？"比"你应该这样做"强十倍。</div>
+        </div>
+        <div class="fw-item">
+          <span class="fw-icon">💬</span>
+          <div class="fw-step">STEP 04</div>
+          <div class="fw-name">R<br>Respond</div>
+          <div class="fw-desc">最后才给建议——而且先问"你想听我说说看法吗？"给对方选择权，不是强塞解决方案。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="m-wrap">
+
+    <!-- CHAPTER 3 -->
+    <div class="chapter">
+      <div class="chapter-num">CHAPTER 03</div>
+      <div class="chapter-title">说话升级：句式替换手册</div>
+      <div class="chapter-desc">登味的具体表现往往藏在习惯性的词语里。以下是高频登味句式的替换示范。</div>
+    </div>
+
+    <div class="ba-pair">
+      <div class="ba-box ba-before"><div class="ba-label">❌ 登味版</div>"你太敏感了，这有什么好难过的。"</div>
+      <div class="ba-arrow">→</div>
+      <div class="ba-box ba-after"><div class="ba-label">✓ 去登味版</div>"我好像说了什么让你不舒服？你愿意跟我说说吗？"</div>
+    </div>
+    <div class="ba-pair">
+      <div class="ba-box ba-before"><div class="ba-label">❌ 登味版</div>"那你就直接跟她说清楚不就好了。"</div>
+      <div class="ba-arrow">→</div>
+      <div class="ba-box ba-after"><div class="ba-label">✓ 去登味版</div>"听起来很烦，你当时是什么感受？"</div>
+    </div>
+    <div class="ba-pair">
+      <div class="ba-box ba-before"><div class="ba-label">❌ 登味版</div>"你这个方案不错，但是效率太低了。"</div>
+      <div class="ba-arrow">→</div>
+      <div class="ba-box ba-after"><div class="ba-label">✓ 去登味版</div>"你这个思路挺有意思，我们可以在效率上再优化一下。"</div>
+    </div>
+    <div class="ba-pair">
+      <div class="ba-box ba-before"><div class="ba-label">❌ 登味版</div>"想开点，这没什么大不了的。"</div>
+      <div class="ba-arrow">→</div>
+      <div class="ba-box ba-after"><div class="ba-label">✓ 去登味版</div>"嗯，这件事对你来说确实很重要，我理解。"</div>
+    </div>
+
+    <div class="skills-list" style="margin-top:32px;">
+      <div class="skill-row">
+        <div class="skill-num">5</div>
+        <div class="skill-body">
+          <div class="skill-name">学会"没用"的回应</div>
+          <div class="skill-detail">"嗯，我听着呢" / "听起来真的很累" / "那你现在还好吗？"——看起来什么也没解决，但对对方价值极大。</div>
+        </div>
+        <div class="skill-tag"><span class="tag-pill tag-key">核心技巧</span></div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-num">6</div>
+        <div class="skill-body">
+          <div class="skill-name">给建议前先问授权</div>
+          <div class="skill-detail">"我有一个想法，你想听听吗？"这一句话，把强迫推销变成了平等对话。</div>
+        </div>
+        <div class="skill-tag"><span class="tag-pill tag-daily">日常练习</span></div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-num">7</div>
+        <div class="skill-body">
+          <div class="skill-name">听 7 说 3 比例</div>
+          <div class="skill-detail">情感类对话中，让对方说70%，你说30%。你的30%大部分是提问，小部分才是回应。</div>
+        </div>
+        <div class="skill-tag"><span class="tag-pill tag-mindset">思维转变</span></div>
+      </div>
+    </div>
+
+    <!-- CHAPTER 4 -->
+    <div class="chapter">
+      <div class="chapter-num">CHAPTER 04</div>
+      <div class="chapter-title">情绪信号识别系统</div>
+      <div class="chapter-desc">登味的另一个来源是"没读出来"。以下是常见情绪信号及对应的处理方式。</div>
+    </div>
+
+    <div class="emotion-grid">
+      <div class="emotion-card t1">
+        <div class="ec-label">信号类型 A · 回复变短</div>
+        <div class="ec-signal">对方突然只回"嗯""哦""好"</div>
+        <div class="ec-response">这不是"没事"，这是情绪信号，先切换模式。</div>
+        <div class="ec-quote">"感觉你好像不太开心，怎么了？"</div>
+      </div>
+      <div class="emotion-card t2">
+        <div class="ec-label">信号类型 B · 反应过激</div>
+        <div class="ec-signal">为一件小事情绪波动很大</div>
+        <div class="ec-response">小事背后往往有积累的委屈，去探背后的感受。</div>
+        <div class="ec-quote">"你今天好像压力很大，是我说什么了吗？"</div>
+      </div>
+      <div class="emotion-card t3">
+        <div class="ec-label">信号类型 C · 反复提同一件事</div>
+        <div class="ec-signal">同一个问题说了很多次</div>
+        <div class="ec-response">说明这个问题没被"接住"过，要认真承接。</div>
+        <div class="ec-quote">"这件事对你影响很大对吗？"</div>
+      </div>
+      <div class="emotion-card t4">
+        <div class="ec-label">信号类型 D · 沉默不说话</div>
+        <div class="ec-signal">对话突然安静</div>
+        <div class="ec-response">主动、温和地打开门，但不强迫。</div>
+        <div class="ec-quote">"没事，你不想说也没关系，我在这里。"</div>
+      </div>
+    </div>
+
+  </div><!-- end m-wrap -->
+
+  <!-- MINDSET -->
+  <div class="mindset-wrap">
+    <div style="max-width:900px;margin:0 auto;">
+      <div class="chapter-num" style="color:rgba(200,80,42,0.8);">CHAPTER 05</div>
+      <div class="fw-heading">底层思维升级</div>
+      <div class="fw-sub">去登味的持久战——不只是技巧，是认知的根本改变</div>
+      <div class="mindset-grid">
+        <div class="mc">
+          <div class="mc-num">01</div>
+          <div class="mc-title">情绪没有对错</div>
+          <div class="mc-body">感受是事实，不是需要被纠正的错误。你的任务不是证明她的感受是错的，而是让她感觉被接纳。</div>
+          <div class="mc-highlight">"你的感受是真实的，不需要解释。"</div>
+        </div>
+        <div class="mc">
+          <div class="mc-num">02</div>
+          <div class="mc-title">在场比解决更重要</div>
+          <div class="mc-body">大多数时候，对方找你说话，不是要你解决问题，而是要你"在场"。全心全意地出现，比给出完美答案更珍贵。</div>
+          <div class="mc-highlight">"我听着呢，你说。"</div>
+        </div>
+        <div class="mc">
+          <div class="mc-num">03</div>
+          <div class="mc-title">好奇心是最好的工具</div>
+          <div class="mc-body">当你带着真正的好奇心问"你当时是什么感受"，这本身就是一种高质量的陪伴。好奇心让对方感觉被重视。</div>
+          <div class="mc-highlight">"我想更了解你经历了什么。"</div>
+        </div>
+        <div class="mc">
+          <div class="mc-num">04</div>
+          <div class="mc-title">复盘是成长的燃料</div>
+          <div class="mc-body">每次对话结束后问自己：有没有打断？有没有用逻辑反驳情绪？有没有急着给解决方案？不批判，只观察。</div>
+          <div class="mc-highlight">"今天有什么可以做得更好？"</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    去登味方法论 · 直男沟通进化手册 · <span style="color:rgba(200,80,42,0.6)">你已经很好了，还可以更好</span>
+  </div>
+
+</div><!-- end page-methodology -->
+
+
+<!-- ══════════════════════════════════════
+     PAGE 2: ANALYZER
+══════════════════════════════════════ -->
+<div id="page-analyzer" class="page">
+  <div class="analyzer-layout">
+
+    <!-- LEFT PANEL: INPUT -->
+    <div class="input-panel">
+      <div class="panel-header">
+        <div class="panel-title">登味诊断器</div>
+        <div class="panel-sub">把你和对方的对话粘贴进来，AI 会分析哪些地方有登味，并给出改进建议。</div>
+      </div>
+
+      <div class="context-area" id="msgList">
+        <div class="context-hint">点击「我说的」/「对方」可切换说话人 ↓</div>
+
+        <!-- Default messages -->
+        <div class="msg-row">
+          <button class="msg-who her" onclick="toggleWho(this)">对方</button>
+          <textarea class="msg-input" placeholder="对方说的话..." rows="2">今天上班好累，感觉什么都做不好</textarea>
+          <div class="msg-del" onclick="delMsg(this)">×</div>
+        </div>
+        <div class="msg-row">
+          <button class="msg-who me" onclick="toggleWho(this)">我说的</button>
+          <textarea class="msg-input" placeholder="你说的话..." rows="2">那你明天注意点就好了，下次效率高一点</textarea>
+          <div class="msg-del" onclick="delMsg(this)">×</div>
+        </div>
+        <div class="msg-row">
+          <button class="msg-who her" onclick="toggleWho(this)">对方</button>
+          <textarea class="msg-input" placeholder="对方说的话..." rows="2">你就不能安慰我一下吗</textarea>
+          <div class="msg-del" onclick="delMsg(this)">×</div>
+        </div>
+        <div class="msg-row">
+          <button class="msg-who me" onclick="toggleWho(this)">我说的</button>
+          <textarea class="msg-input" placeholder="你说的话..." rows="2">我说的就是让你别想太多啊，这有什么好安慰的</textarea>
+          <div class="msg-del" onclick="delMsg(this)">×</div>
+        </div>
+
+        <button class="add-msg-btn" onclick="addMsg()">＋ 添加一条对话</button>
+
+        <div class="preset-area">
+          <div class="preset-label">快速载入示例场景：</div>
+          <div class="preset-chips">
+            <div class="preset-chip" onclick="loadPreset('work')">工作压力场景</div>
+            <div class="preset-chip" onclick="loadPreset('team')">团队会议场景</div>
+            <div class="preset-chip" onclick="loadPreset('fight')">吵架场景</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel-footer">
+        <button class="clear-btn" onclick="clearMsgs()">清空</button>
+        <button class="analyze-btn" id="analyzeBtn" onclick="analyze()">
+          🔍 开始诊断
+        </button>
+      </div>
+    </div>
+
+    <!-- RIGHT PANEL: RESULT -->
+    <div class="result-panel">
+      <div class="result-header">
+        <div class="result-title">诊断报告</div>
+        <div class="result-sub" id="resultSub">输入对话内容后，点击「开始诊断」</div>
+      </div>
+      <div class="result-body" id="resultBody">
+        <div class="empty-state">
+          <div class="empty-icon">🧐</div>
+          <div class="empty-title">等待诊断中</div>
+          <div class="empty-desc">把你的对话内容填入左边，AI 会帮你找出登味的地方，并给出具体的改进话术。</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div><!-- end page-analyzer -->
+
+<script>
+// ─── NAVIGATION ───
+function switchPage(name) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('page-' + name).classList.add('active');
+  const tabs = document.querySelectorAll('.nav-tab');
+  if (name === 'methodology') tabs[0].classList.add('active');
+  else tabs[1].classList.add('active');
+  window.scrollTo(0, 0);
+}
+
+// ─── MESSAGE BUILDER ───
+function toggleWho(btn) {
+  if (btn.classList.contains('me')) {
+    btn.classList.remove('me'); btn.classList.add('her');
+    btn.textContent = '对方';
+  } else {
+    btn.classList.remove('her'); btn.classList.add('me');
+    btn.textContent = '我说的';
+  }
+}
+
+function delMsg(btn) {
+  btn.closest('.msg-row').remove();
+}
+
+function addMsg(who, text) {
+  const list = document.getElementById('msgList');
+  const addBtn = list.querySelector('.add-msg-btn');
+  const row = document.createElement('div');
+  row.className = 'msg-row';
+  const whoClass = (who === 'me') ? 'me' : 'her';
+  const whoLabel = (who === 'me') ? '我说的' : '对方';
+  row.innerHTML = `
+    <button class="msg-who ${whoClass}" onclick="toggleWho(this)">${whoLabel}</button>
+    <textarea class="msg-input" placeholder="${who === 'me' ? '你说的话...' : '对方说的话...'}" rows="2">${text || ''}</textarea>
+    <div class="msg-del" onclick="delMsg(this)">×</div>
+  `;
+  list.insertBefore(row, addBtn);
+  row.querySelector('textarea').focus();
+}
+
+function clearMsgs() {
+  const list = document.getElementById('msgList');
+  list.querySelectorAll('.msg-row').forEach(r => r.remove());
+  document.getElementById('resultBody').innerHTML = `
+    <div class="empty-state">
+      <div class="empty-icon">🧐</div>
+      <div class="empty-title">等待诊断中</div>
+      <div class="empty-desc">把你的对话内容填入左边，AI 会帮你找出登味的地方，并给出具体的改进话术。</div>
+    </div>`;
+  document.getElementById('resultSub').textContent = '输入对话内容后，点击「开始诊断」';
+}
+
+// ─── PRESETS ───
+const presets = {
+  work: [
+    { who: 'her', text: '今天被领导当众批评了，好难受，眼眶都红了' },
+    { who: 'me', text: '被批评说明你有地方做得不够好，改正就行了' },
+    { who: 'her', text: '你就不能说句安慰的话吗' },
+    { who: 'me', text: '我说的就是实话，安慰有什么用，改掉才是正经的' },
+  ],
+  team: [
+    { who: 'her', text: '我觉得这个方案的方向不太对' },
+    { who: 'me', text: '你说的那个方向我们上次已经讨论过了，行不通的' },
+    { who: 'her', text: '我只是觉得可以再考虑一下...' },
+    { who: 'me', text: '没必要，我们按现在的方案执行就好了，别浪费时间了' },
+  ],
+  fight: [
+    { who: 'her', text: '你根本不在乎我说什么' },
+    { who: 'me', text: '我怎么不在乎了，我每次都在听你说话' },
+    { who: 'her', text: '你听是听了，但你从来不理解我' },
+    { who: 'me', text: '那你说，我哪里没理解你，你说清楚一点' },
+  ]
+};
+
+function loadPreset(key) {
+  const list = document.getElementById('msgList');
+  list.querySelectorAll('.msg-row').forEach(r => r.remove());
+  presets[key].forEach(m => addMsg(m.who, m.text));
+}
+
+// ─── ANALYZE ───
+async function analyze() {
+  const rows = document.querySelectorAll('.msg-row');
+  if (rows.length === 0) {
+    alert('请先添加对话内容');
+    return;
+  }
+
+  const conversation = [];
+  rows.forEach(row => {
+    const who = row.querySelector('.msg-who').classList.contains('me') ? '我（男方）' : '对方';
+    const text = row.querySelector('.msg-input').value.trim();
+    if (text) conversation.push(`${who}：${text}`);
+  });
+
+  if (conversation.length === 0) {
+    alert('请填写对话内容');
+    return;
+  }
+
+  const btn = document.getElementById('analyzeBtn');
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spin"></span> 分析中...';
+
+  document.getElementById('resultSub').textContent = 'AI 正在分析对话...';
+  document.getElementById('resultBody').innerHTML = `
+    <div class="loading-state">
+      <div class="loading-dots"><span></span><span></span><span></span></div>
+      <div class="loading-text">正在诊断登味程度...</div>
+    </div>`;
+
+  const convText = conversation.join('\n');
+
+  const systemPrompt = `你是一个专业的"去登味"沟通顾问。你的任务是分析对话中男方（"我（男方）"）的发言，找出存在"登味"的部分——即沟通中缺乏情绪感知、急于给解决方案、用逻辑反驳情绪、否定对方感受等行为。
+
+请用严格的JSON格式返回分析结果，格式如下：
+{
+  "score": 75,
+  "level": "高",
+  "summary": "一句话总结登味程度和主要问题",
+  "problems": [
+    {
+      "quote": "男方原话（原文引用）",
+      "type": "问题类型（如：急于给解决方案 / 用逻辑否定情绪 / 缺乏共情 / 否定感受）",
+      "explain": "为什么这句话有登味（2-3句，具体分析）",
+      "better": "更好的说法（具体改写）"
+    }
+  ],
+  "goods": [
+    "做得好的地方（如果有）"
+  ],
+  "advice": "整体改进建议（2-3句，针对这次对话的具体建议）"
+}
+
+score是0-100的登味指数，100=极度登味，0=完全没有登味。
+level根据score：80+="高"，50-79="中"，0-49="低"。
+只分析男方（"我（男方）"）的发言，不评价对方。
+JSON必须合法，不要有多余内容，不要有markdown代码块。`;
+
+  const userPrompt = `请分析以下对话中男方的登味程度：\n\n${convText}`;
+
+  try {
+    const response = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1000,
+        system: systemPrompt,
+        messages: [{ role: 'user', content: userPrompt }]
+      })
+    });
+
+    const data = await response.json();
+    const raw = data.content.map(b => b.text || '').join('');
+    const clean = raw.replace(/```json|```/g, '').trim();
+    const result = JSON.parse(clean);
+
+    renderResult(result);
+
+  } catch (err) {
+    document.getElementById('resultBody').innerHTML = `
+      <div class="empty-state">
+        <div class="empty-icon">⚠️</div>
+        <div class="empty-title">分析失败</div>
+        <div class="empty-desc">请稍后重试。错误：${err.message}</div>
+      </div>`;
+    document.getElementById('resultSub').textContent = '分析出错';
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = '🔍 重新诊断';
+  }
+}
+
+function renderResult(r) {
+  const levelColor = r.level === '高' ? 'level-high' : r.level === '中' ? 'level-mid' : 'level-low';
+  document.getElementById('resultSub').textContent = `诊断完成 · 共发现 ${r.problems.length} 处登味`;
+
+  let problemsHtml = '';
+  (r.problems || []).forEach(p => {
+    problemsHtml += `
+      <div class="problem-item">
+        <div class="pi-type">${p.type}</div>
+        <div class="pi-quote">「${p.quote}」</div>
+        <div class="pi-explain">${p.explain}</div>
+        <div class="pi-better-label">✓ 可以这样说：</div>
+        <div class="pi-better">${p.better}</div>
+      </div>`;
+  });
+
+  let goodsHtml = '';
+  if (r.goods && r.goods.length > 0) {
+    r.goods.forEach(g => {
+      goodsHtml += `<div class="good-item"><span class="good-icon">✓</span><span class="good-text">${g}</span></div>`;
+    });
+  } else {
+    goodsHtml = `<div class="good-item"><span class="good-icon">📝</span><span class="good-text">这次对话中暂未发现明显的亮点，这也是进步的空间。</span></div>`;
+  }
+
+  document.getElementById('resultBody').innerHTML = `
+    <div class="score-banner">
+      <div class="score-card">
+        <div class="sc-label">登味指数</div>
+        <div class="sc-value ${levelColor}">${r.score}</div>
+        <div class="sc-desc">满分100</div>
+      </div>
+      <div class="score-card">
+        <div class="sc-label">登味等级</div>
+        <div class="sc-value ${levelColor}">${r.level}</div>
+        <div class="sc-desc">登味程度</div>
+      </div>
+      <div class="score-card">
+        <div class="sc-label">问题数量</div>
+        <div class="sc-value" style="color:var(--ink);">${r.problems.length}</div>
+        <div class="sc-desc">处登味发言</div>
+      </div>
+    </div>
+
+    <div class="result-section">
+      <div class="rs-title">总结</div>
+      <div class="quote-block" style="margin:0;">
+        <div class="quote-text" style="font-size:15px;">${r.summary}</div>
+      </div>
+    </div>
+
+    <div class="result-section">
+      <div class="rs-title">登味发言详解</div>
+      ${problemsHtml || '<div class="good-item"><span class="good-icon">🎉</span><span class="good-text">没有发现明显的登味发言，做得不错！</span></div>'}
+    </div>
+
+    <div class="result-section">
+      <div class="rs-title">做得好的地方</div>
+      ${goodsHtml}
+    </div>
+
+    <div class="result-section">
+      <div class="rs-title">整体改进建议</div>
+      <div class="advice-box"><p>${r.advice}</p></div>
+    </div>`;
+}
+</script>
+</body>
+</html>
